@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+//React and Routing
+import './App.css'; // temporary styling
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import ProtectedRoute from './utils/ProtectedRoute.js';
+//Components
+import Landing from './components/Landing.js';
+import SignUp from './components/SignUp.js';
+import Login from './components/Login.js';
+import Profile from './components/Profile.js';
+import EditProfile from './components/EditProfile.js';
+import AddEditItems from './components/AddEditItems.js';
+import PurchaseHistory from './components/PurchaseHistory.js';
+import Marketplace from './components/Marketplace.js';
+import Checkout from './components/Checkout.js';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route exact path='/' commponent={Landing} />
+        <Route path='/login' component={Login} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/marketplace' component={Marketplace} />
+        <Route path='/checkout' component={Checkout} />
+        <ProtectedRoute path='/profile' component={Profile} />
+        <ProtectedRoute path='/editprofile' component={EditProfile} />
+        <ProtectedRoute path='/items' component={AddEditItems} />
+        <ProtectedRoute path='/purchasehistory' component={PurchaseHistory} />
+      </Switch>
     </div>
   );
 }
