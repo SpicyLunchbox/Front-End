@@ -1,4 +1,4 @@
-import {REQUEST_USERS, REQUEST_USER, REQUEST_ALL_EQUIPMENT, REQUEST_EQUIPMENT, EDIT_USER, EDIT_EQUIPMENT} from './actions'; 
+import {REQUEST_USER, REQUEST_ALL_EQUIPMENT, REQUEST_EQUIPMENT} from './actions'; 
 
 const initialState = {
     user: {
@@ -14,29 +14,23 @@ const initialState = {
     },
     equipment: {
         equipment_id: null,
+        owner_id: null,
         equipment_name: null,
         equipment_type: null,
         equipment_type_id: null,
         equipment_description: null,
-        cost: null,
-        seller: null,
-        purchaser: null
+        cost: null
     },
-    users: {},
-    equipments: {}
+    equipments: []
 } 
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         
-        case REQUEST_USERS:
-            return{}
-
         case REQUEST_USER:
             return {
                 ...state,
                 user: {
-                    ...state.user,
                     user_id: action.payload.user_id,
                     username: action.payload.username,
                     name: action.payload.name,
@@ -49,30 +43,26 @@ export default function reducer(state = initialState, action) {
                 }    
             }
 
-        case REQUEST_ALL_EQUIPMENT:
-            return {}
-
         case REQUEST_EQUIPMENT:
             return {
                 ...state,
                 equipment: {
-                    ...state.equipment,
                     equipment_id: action.payload.equipment_id,
+                    owner_id: action.payload.owner_id,
                     equipment_name: action.payload.equipment_name,
                     equipment_type: action.payload.equipment_type,
                     equipment_type_id: action.payload.equipment_type_id,
                     equipment_description: action.payload.equipment_description,
-                    cost: action.payload.cost,
-                    seller: action.payload.seller,
-                    purchaser: action.payload.purchaser
+                    cost: action.payload.cost
                 }
             }
 
-        case EDIT_USER:
-            return {}
-
-        case EDIT_EQUIPMENT:
-            return {}
+        case REQUEST_ALL_EQUIPMENT:
+            return {
+                ...state,
+                equipmentsts: action.payload
+            }
+    
 
         default:
             return state;
