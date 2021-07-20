@@ -21,8 +21,8 @@ const Landing = () => {
     return (
         <Page>
             <Header>
-                <A href='#'>signup</A>
-                <A href='#'>login</A>
+                <A href='/signup'>signup</A>
+                <A href='/login'>login</A>
             </Header>
             <Body>
                 <Title>One Place</Title>

@@ -3,9 +3,11 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {requestUser} from '../store/actions';
 
 //Component
-const Login = () => {
+const Login = (props) => {
     const {push} = useHistory()
     const signup = () => {
         push('/signup')
@@ -15,8 +17,8 @@ const Login = () => {
     }
 
     const initialForm = {
-        username: '',
-        password: ''
+        username: null,
+        password: null
     }
 
     const [form, setForm] = useState(initialForm);
@@ -29,10 +31,10 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .post('#', form)
+            .post('https://my-tech-back-end.herokuapp.com/users/login', form)
             .then(res => {
                 localStorage.setItem('token', res.data.token)
-                //store state in redux store here
+                props.requestUser(res.data.user)
                 profile()
             })
             .catch(err => {
@@ -67,8 +69,14 @@ const Login = () => {
         </Page>
     )
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        requestUser: (user) => dispatch(requestUser(user))
+    }
+}
 //Export
-export default Login
+export default connect({}, mapDispatchToProps)(Login)
 
 //Styling
 const Page = styled.div``

@@ -5,9 +5,9 @@ const axiosWithAuth = () => {
 
     return axios.create({
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token, /*`Bearer ${token}`*/
         },
-        baseURL: "#" // need url
+        baseURL: "https://my-tech-back-end.herokuapp.com"
     });
 };
 

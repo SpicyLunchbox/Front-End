@@ -1,4 +1,4 @@
-import {REQUEST_USER, REQUEST_EQUIPMENT, EDIT_USER, EDIT_EQUIPMENT} from './actions'; 
+import {REQUEST_USERS, REQUEST_USER, REQUEST_ALL_EQUIPMENT, REQUEST_EQUIPMENT, EDIT_USER, EDIT_EQUIPMENT} from './actions'; 
 
 const initialState = {
     user: {
@@ -21,13 +21,30 @@ const initialState = {
         cost: null,
         seller: null,
         purchaser: null
-    }
+    },
+    users: {},
+    equipments: {}
 } 
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {
-    
+        
+        case REQUEST_USERS:
+            return{}
         case REQUEST_USER:
+            return {
+                ...state,
+                user_id: action.payload.user_id,
+                username: action.payload.username,
+                name: action.payload.name,
+                email_address: action.payload.email_address,
+                phone_number: action.payload.phone_number,
+                address_line: action.payload.address_line,
+                address_state: action.payload.address_state,
+                address_city: action.payload.address_city,
+                zip_code: action.payload.zip_code
+            }
+        case REQUEST_ALL_EQUIPMENT:
             return {}
         case REQUEST_EQUIPMENT:
             return {}
