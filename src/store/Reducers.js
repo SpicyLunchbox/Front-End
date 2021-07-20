@@ -1,4 +1,4 @@
-import {REQUEST_USER, REQUEST_ALL_EQUIPMENT, REQUEST_EQUIPMENT} from './actions'; 
+import {REQUEST_USER, REQUEST_ALL_EQUIPMENT, REQUEST_EQUIPMENT, REQUEST_OWNER_EQUIPMENT} from './actions'; 
 
 const initialState = {
     user: {
@@ -21,7 +21,8 @@ const initialState = {
         equipment_description: null,
         cost: null
     },
-    equipments: []
+    equipmentAll: [],
+    equipmentOwner: []
 } 
 
 export default function reducer(state = initialState, action) {
@@ -60,10 +61,15 @@ export default function reducer(state = initialState, action) {
         case REQUEST_ALL_EQUIPMENT:
             return {
                 ...state,
-                equipmentsts: action.payload
+                equipmentAll: action.payload
+            }
+
+        case REQUEST_OWNER_EQUIPMENT:
+            return {
+                ...state,
+                equipmentOwner: action.payload
             }
     
-
         default:
             return state;
     }

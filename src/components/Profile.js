@@ -1,31 +1,52 @@
 //Imports
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import {requestOwnerEquipment} from '../store/actions';
 
 //Component
 const Profile = (props) => {
 
     useEffect(() => {
-        
-    })
+        axiosWithAuth.get(`https://my-tech-back-end.herokuapp.com/equipment/${props.user.user_id}`)
+            .then(res => {
+                props.requestOwnerEquipment(res.data)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <Page>
             <ProfileCard>
                 <EquipmentCardContainer>
                     <EquipmentCard>
-
+                        blah blah blah
                     </EquipmentCard>
                 </EquipmentCardContainer>
             </ProfileCard>
         </Page>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+        equipmentOwner: state.equipmentOwner
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        requestOwnerEquipment: (equipments) => dispatch(requestOwnerEquipment(equipments))
+    }
+}
+
 //Export
-export default connect(mapStateToProps, {})(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
 
 //Styling
 const Page = styled.div``
