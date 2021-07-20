@@ -31,27 +31,49 @@ export default function reducer(state = initialState, action) {
         
         case REQUEST_USERS:
             return{}
+
         case REQUEST_USER:
             return {
                 ...state,
-                user_id: action.payload.user_id,
-                username: action.payload.username,
-                name: action.payload.name,
-                email_address: action.payload.email_address,
-                phone_number: action.payload.phone_number,
-                address_line: action.payload.address_line,
-                address_state: action.payload.address_state,
-                address_city: action.payload.address_city,
-                zip_code: action.payload.zip_code
+                user: {
+                    ...state.user,
+                    user_id: action.payload.user_id,
+                    username: action.payload.username,
+                    name: action.payload.name,
+                    email_address: action.payload.email_address,
+                    phone_number: action.payload.phone_number,
+                    address_line: action.payload.address_line,
+                    address_state: action.payload.address_state,
+                    address_city: action.payload.address_city,
+                    zip_code: action.payload.zip_code
+                }    
             }
+
         case REQUEST_ALL_EQUIPMENT:
             return {}
+
         case REQUEST_EQUIPMENT:
-            return {}
+            return {
+                ...state,
+                equipment: {
+                    ...state.equipment,
+                    equipment_id: action.payload.equipment_id,
+                    equipment_name: action.payload.equipment_name,
+                    equipment_type: action.payload.equipment_type,
+                    equipment_type_id: action.payload.equipment_type_id,
+                    equipment_description: action.payload.equipment_description,
+                    cost: action.payload.cost,
+                    seller: action.payload.seller,
+                    purchaser: action.payload.purchaser
+                }
+            }
+
         case EDIT_USER:
             return {}
+
         case EDIT_EQUIPMENT:
             return {}
+
         default:
             return state;
     }
