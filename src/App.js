@@ -9,8 +9,7 @@ import SignUp from './components/SignUp.js';
 import Login from './components/Login.js';
 import Profile from './components/Profile.js';
 import EditProfile from './components/EditProfile.js';
-import AddEditItems from './components/AddEditItems.js';
-import PurchaseHistory from './components/PurchaseHistory.js';
+import AddEditEquipment from './components/AddEditEquipment.js';
 import Marketplace from './components/Marketplace.js';
 import Checkout from './components/Checkout.js';
 
@@ -25,8 +24,7 @@ function App() {
         <Route path='/checkout' component={Checkout} />
         <ProtectedRoute path='/profile' component={Profile} />
         <ProtectedRoute path='/editprofile' component={EditProfile} />
-        <ProtectedRoute path='/items' component={AddEditItems} />
-        <ProtectedRoute path='/purchasehistory' component={PurchaseHistory} />
+        <ProtectedRoute path='/equipment' component={AddEditEquipment} />
       </Switch>
     </div>
   );
