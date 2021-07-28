@@ -133,20 +133,22 @@ const Signup = (props) => {
     )
 }
 
+const mapStateToProps = state => {}
+
 const mapDispatchToProps = dispatch => {
     return { requestUser: (user) => dispatch(requestUser(user))
 
     }
 }
 //Export
-export default connect({}, mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
 
 //Styling
 const Page = styled.div``
 
 const SignupForm = styled.div``
 
-const Button = styled.div``
+const Button = styled.button``
 
 const Login = styled.div``
 

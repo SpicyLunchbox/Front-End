@@ -70,19 +70,21 @@ const Login = (props) => {
     )
 }
 
+const mapStateToProps = state => {}
+
 const mapDispatchToProps = dispatch => {
     return {
         requestUser: (user) => dispatch(requestUser(user))
     }
 }
 //Export
-export default connect({}, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 //Styling
 const Page = styled.div``
 
 const LoginForm = styled.div``
 
-const Button = styled.div``
+const Button = styled.button``
 
 const Signup = styled.div``
